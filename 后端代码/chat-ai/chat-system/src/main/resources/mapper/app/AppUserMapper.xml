@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chat.system.mapper.AppUserMapper">
+
+    <select id="sysUserList" resultType="com.chat.system.domain.res.SysAppUserRes">
+        SELECT au.*,ao.vip_id FROM app_user au
+        left join (SELECT * from app_order where id in (SELECT MAX( id ) AS id FROM app_order GROUP BY user_id ORDER BY id DESC)) ao
+        on au.id = ao.user_id
+        where is_delete = 0
+        <if test="phone != null and phone != ''">
+            AND au.phone like concat('%', #{phone}, '%')
+        </if>
+        <if test="userType != null and userType == 1">
+            AND au.expire_time &lt;= #{nowDate}
+            AND au.permanent = 1
+        </if>
+        <if test="userType != null and userType == 2">
+            AND (au.expire_time &gt;= #{nowDate} OR au.permanent = 0)
+        </if>
+        <if test="vipType != null and vipType != 0">
+            AND (au.expire_time &gt;= #{nowDate} OR au.permanent = 0)
+            AND ao.vip_id = #{vipString}
+        </if>
+        <if test="startTime != null and startTime != ''"><!-- 开始时间检索 -->
+            AND date_format(au.create_time,'%y%m%d') &gt;= date_format(#{startTime},'%y%m%d')
+        </if>
+        <if test="endTime != null and endTime != ''"><!-- 结束时间检索 -->
+            AND date_format(au.create_time,'%y%m%d') &lt;= date_format(#{endTime},'%y%m%d')
+        </if>
+    </select>
+</mapper>
