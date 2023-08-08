@@ -9,7 +9,7 @@ import com.chat.common.enums.PermanentUser;
 import com.chat.system.domain.AppOrder;
 import com.chat.system.domain.AppUser;
 import com.chat.system.domain.AppVip;
-import com.chat.system.service.ApplePayService;
+import com.chat.system.service.IApplePayService;
 import com.chat.system.service.IAppOrderService;
 import com.chat.system.service.IAppUserService;
 import com.chat.system.service.IAppVipService;
@@ -21,7 +21,7 @@ import java.util.Date;
 
 @Service
 @Slf4j
-public class ApplePayServiceImpl implements ApplePayService {
+public class ApplePayServiceImpl implements IApplePayService {
 
     @Resource
     private IAppOrderService appOrderService;

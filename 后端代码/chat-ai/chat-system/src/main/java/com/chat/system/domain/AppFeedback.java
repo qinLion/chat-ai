@@ -46,6 +46,26 @@ public class AppFeedback implements Serializable {
     private Integer userId;
 
     /**
+     * 0意见反馈 1、广场 2攻略
+     */
+    private Integer type;
+
+    /**
+     * 举报的评论的id
+     */
+    private Integer commentId;
+
+    /**
+     * 举报的评论的内容
+     */
+    private String commentContent;
+
+    /**
+     * 主题
+     */
+    private String topic;
+
+    /**
      * 创建时间
      */
     private Date createTime;

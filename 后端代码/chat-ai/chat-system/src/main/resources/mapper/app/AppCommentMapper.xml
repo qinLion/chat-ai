@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chat.system.mapper.AppCommentMapper">
+
+    <select id="sysCommentList" resultType="com.chat.system.domain.res.SysAppCommentRes">
+        SELECT au.phone,au.nickname,ac.content,ac.comment_id,ac.id,
+        ac.type,date_format(ac.create_time, '%Y-%m-%d %H:%i:%s') as createTime
+        FROM `app_comment` ac
+        LEFT JOIN app_user au on au.id = ac.user_id
+        where 1 = 1
+        <if test="name != null and name != ''">
+            AND (au.phone like concat('%', #{name}, '%') OR au.nickname like concat('%', #{name}, '%'))
+        </if>
+        <if test="content != null and content != ''">
+            AND ac.content like concat('%', #{content}, '%')
+        </if>
+        ORDER BY ac.create_time desc
+    </select>
+</mapper>

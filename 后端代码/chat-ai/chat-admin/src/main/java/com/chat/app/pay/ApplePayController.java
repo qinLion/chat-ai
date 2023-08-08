@@ -5,7 +5,7 @@ import com.chat.common.core.controller.APPController;
 import com.chat.common.core.domain.AjaxResult;
 import com.chat.common.utils.ApplePayUtil;
 import com.chat.system.domain.query.PayQuery;
-import com.chat.system.service.ApplePayService;
+import com.chat.system.service.IApplePayService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +20,7 @@ import javax.annotation.Resource;
 public class ApplePayController extends APPController {
 
     @Resource
-    private ApplePayService applePayService;
+    private IApplePayService applePayService;
 
     @Resource
     private ApplePayUtil applePayUtil;

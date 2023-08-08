@@ -26,6 +26,8 @@ public interface ISysNoticeService
      */
     public List<SysNotice> selectNoticeList(SysNotice notice);
 
+    public List<SysNotice> selectNoticeList();
+
     /**
      * 新增公告
      * 

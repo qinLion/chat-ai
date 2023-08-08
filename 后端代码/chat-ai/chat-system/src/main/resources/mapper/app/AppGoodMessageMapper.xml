@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chat.system.mapper.AppGoodMessageMapper">
+
+    <select id="getAllId" resultType="java.lang.Integer">
+        select agm.id from app_good_message agm
+        LEFT JOIN app_user au on au.id = agm.user_id
+        WHERE au.is_available = 0 and au.is_delete = 0
+    </select>
+    <select id="userList" resultType="com.chat.system.domain.AppGoodMessage">
+        SELECT amg.* FROM `app_good_message` amg
+        LEFT JOIN app_collect ac on amg.id = ac.content_id
+        WHERE ac.type = 2 and ac.user_id = #{cUserId}
+        ORDER BY ac.create_time desc
+    </select>
+</mapper>

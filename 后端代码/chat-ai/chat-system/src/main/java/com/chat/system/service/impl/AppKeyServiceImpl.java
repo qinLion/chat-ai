@@ -39,6 +39,9 @@ public class AppKeyServiceImpl extends ServiceImpl<AppKeyMapper, AppKey> impleme
             String key = appKey.getKeyValue();
             Thread.sleep(200);
             appKey.setStatus(test(key));
+            if (appKey.getStatus().equals(1)){
+                appKey.setUseStatus(1);
+            }
             appKeyMapper.updateById(appKey);
         }
     }

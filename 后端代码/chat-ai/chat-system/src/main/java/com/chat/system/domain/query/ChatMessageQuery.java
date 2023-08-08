@@ -16,6 +16,11 @@ public class ChatMessageQuery implements Serializable {
      * 3、翻译
      * 4、解题
      * 5、编程助手
+     * 6、写文章
+     * 7、写诗歌
+     * 8、写小红书体文案
+     * 9、下厨房
+     * 10、星座专家
      */
     private Integer type = 1;
 

@@ -19,7 +19,7 @@ ruoyi:
 open:
   ai:
     url: https://api.openai.com
-    key: 
+    key:
     request:
       timeout: 100
     # model: gpt-3.5-turbo
@@ -27,17 +27,17 @@ open:
     # 代理
     proxy:
       host: 127.0.0.1
-      port: 7890
-      # port: 11223
+      # port: 7890
+      port: 11223
       proxyUsername:
       proxyPassword:
 # 极光平台的参数
 platform:
   jiguang:
-    Authorization: 
+    Authorization:
     url: https://api.verification.jpush.cn/v1/web/loginTokenVerify
-    publicKey: 
-    privateKey: 
+    publicKey:
+    privateKey:
 # 开发环境配置
 server:
   # 服务器的HTTP端口，默认为8080
@@ -94,13 +94,14 @@ spring:
   # redis 配置
   redis:
     # 地址
-    host: ip
+    host:
     # 端口，默认为6379
-    port: 6379
+    port:
     # 数据库索引
-    database: 0
+    database:
     # 密码
-    password: 
+    password:
+
     # 连接超时时间
     timeout: 10s
     jedis:

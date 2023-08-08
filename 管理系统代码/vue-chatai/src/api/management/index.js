@@ -32,6 +32,22 @@ export function messageDelete(query) {
     params: query
   })
 }
+// 获取评论列表
+export function commentList(query) {
+  return request({
+    url: '/system/app/comment/list',
+    method: 'get',
+    params: query
+  })
+}
+// 删除评论列表
+export function commentDelete(query) {
+  return request({
+    url: '/system/app/comment/del',
+    method: 'get',
+    params: query
+  })
+}
 // 获取反馈列表
 export function feedbackList(query) {
   return request({

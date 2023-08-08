@@ -101,7 +101,7 @@ export default {
   }
   .content {
     margin: 30px 0;
-    width: 500px;
+    width: 1000px;
   }
   .footer {
     margin-top: 20px;

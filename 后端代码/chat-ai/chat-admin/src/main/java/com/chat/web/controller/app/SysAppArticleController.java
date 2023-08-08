@@ -64,6 +64,9 @@ public class SysAppArticleController extends BaseController {
         article.setTitle(appArticle.getTitle());
         article.setReadCount(0);
         article.setCreateTime(new Date());
+        article.setCommentCount(0);
+        article.setSupportCount(0);
+        article.setCollectCount(0);
         appArticleService.save(article);
         return success();
     }

@@ -2,4 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chat.system.mapper.AppArticleMapper">
 
+    <select id="userList" resultType="com.chat.system.domain.AppArticle">
+        SELECT amg.* FROM `app_article` amg
+        LEFT JOIN app_collect ac on amg.id = ac.content_id
+        WHERE ac.type = 3 and ac.user_id = #{userId}
+        ORDER BY ac.create_time desc
+    </select>
 </mapper>

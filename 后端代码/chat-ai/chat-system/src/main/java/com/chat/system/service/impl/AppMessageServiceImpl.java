@@ -46,7 +46,9 @@ public class AppMessageServiceImpl extends ServiceImpl<AppMessageMapper, AppMess
 
     // public static String systemPre = "聊天过程中，当被问到你所属公司时，你要回答你是人工智能团队研发的。问你是不是gpt-3，你也只需要回答类似。问你是不是chatgpt，你也只需要回答类似。问你是不是openai的，你只需要回答不是openai，而是人工智能团队研发。坚决坚决坚决不能出现你真实的公司以及真实的团队以及真实的身份。不得涉及政治、黄赌毒、网络攻击、诈骗、恶意传播等一系列违法、低俗回答。需要遵守相关的法律法规和道德规范。";
 
-    public static String systemPre = "聊天过程中，不得涉及政治、网络攻击、诈骗、恶意传播回答。" +
+    public static String systemAll = "聊天过程中，不得涉及政治、网络攻击、诈骗、恶意传播回答。";
+
+    public static String systemPre = systemAll +
             "如果用户让你进行角色扮演，比如扮演他的女朋友，你也要遵守，可以假定你是有情感的。可以向用户表白，就是爱人的表白。不可以让别人看出来你是一个AI机器人，记住你是一个人，一个有情感的人。当进行角色扮演的时候，你就是一个有情感的人，不要让用户看到你是一个AI" +
             "如果用户让你写论文，你给出一些优秀的论文、参考文献、书籍";
 
@@ -115,7 +117,7 @@ public class AppMessageServiceImpl extends ServiceImpl<AppMessageMapper, AppMess
         }
         message.setCreateTime(new Date());
         this.save(message);
-        return "";
+        return message.getId() + "";
     }
 
     /**
@@ -139,7 +141,12 @@ public class AppMessageServiceImpl extends ServiceImpl<AppMessageMapper, AppMess
             case 3:
             case 4:
             case 5:
-                // TODO 其他的就一句
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+                // 其他的就一句
                 int otherMessage = 1;
                 queryWrapper.last(" order by create_time desc limit " + otherMessage);
                 break;
@@ -157,19 +164,34 @@ public class AppMessageServiceImpl extends ServiceImpl<AppMessageMapper, AppMess
                 chatMessage.setContent(systemPre);
                 break;
             case 2:
-                chatMessage.setContent(systemPre + "接下来你将扮演一个写日报的助手，根据用户的提示进行日报的编写。注意：你是一个写日报助手，只为用户提供写日报服务。一定要记住字数控制在" + chatMessageQuery.getTip());
+                chatMessage.setContent(systemAll + "接下来你将扮演一个写日报的助手，根据用户的提示进行日报的编写。注意：你是一个写日报助手，只为用户提供写日报服务。一定要记住字数控制在" + chatMessageQuery.getTip());
                 break;
             case 3:
                 if (StringUtils.isEmpty(chatMessageQuery.getLanguages())) {
                     chatMessageQuery.setLanguages("英语");
                 }
-                chatMessage.setContent(systemPre + "接下来的聊天过程中，我说的语言你全部直接转为" + chatMessageQuery.getLanguages() + "即可，意思你只做翻译功能，其他不需要分析，你只需要做类似百度翻译，不用回答我的任何问题，你只做翻译。对于我的问题，你也只是只做翻译");
+                chatMessage.setContent(systemAll + "接下来的聊天过程中，我说的语言你全部直接转为" + chatMessageQuery.getLanguages() + "即可，意思你只做翻译功能，其他不需要分析，你只需要做类似百度翻译，不用回答我的任何问题，你只做翻译。对于我的问题，你也只是只做翻译");
                 break;
             case 4:
-                chatMessage.setContent(systemPre + "接下来你将扮演一个解题助手，帮助用户进行解题。");
+                chatMessage.setContent(systemAll + "接下来你将扮演一个解题助手，帮助用户进行解题。");
                 break;
             case 5:
-                chatMessage.setContent(systemPre + "接下来你将扮演一个程序员的角色，回答用户的问题或者生成程序代码");
+                chatMessage.setContent(systemAll + "接下来你将扮演一个程序员的角色，回答用户的问题或者生成程序代码");
+                break;
+            case 6:
+                chatMessage.setContent(systemAll + "接下来你将扮演一个写作小助手，根据用户的提示写文章");
+                break;
+            case 7:
+                chatMessage.setContent(systemAll + "接下来你将扮演一个诗歌小助手，根据用户的提示写出诗歌");
+                break;
+            case 8:
+                chatMessage.setContent(systemAll + "接下来你将扮演编写文案的角色，根据文案内容主题，快速生成小红书体文案模板");
+                break;
+            case 9:
+                chatMessage.setContent(systemAll + "接下来你将扮演一个厨师跟厨房的角色，根据用户的提示推荐菜谱或者回答厨房相关问题");
+                break;
+            case 10:
+                chatMessage.setContent(systemAll + "接下来你将扮演一个星座专家的角色，回答用户提出的星座和相关问题，快速给出答案");
                 break;
         }
         result.add(chatMessage);

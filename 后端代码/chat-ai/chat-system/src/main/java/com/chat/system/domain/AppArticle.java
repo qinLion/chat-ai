@@ -56,5 +56,19 @@ public class AppArticle implements Serializable {
      */
     private Integer readCount;
 
+    /**
+     * 点赞的数量
+     */
+    private Integer supportCount;
+
+    /**
+     * 评论的数量
+     */
+    private Integer commentCount;
+
+    /**
+     * 收藏的数量
+     */
+    private Integer collectCount;
 
 }

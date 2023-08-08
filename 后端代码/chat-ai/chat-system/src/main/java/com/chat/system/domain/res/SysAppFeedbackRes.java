@@ -21,12 +21,14 @@ public class SysAppFeedbackRes implements Serializable {
     /**
      * 0意见反馈 1、广场 2攻略
      */
-    private Integer type = 0;
+    private Integer type;
 
     private Date createTime;
 
     private String createTimeString;
 
-    private String topic = "系统反馈";
+    private String commentContent;
+
+    private String topic;
 
 }

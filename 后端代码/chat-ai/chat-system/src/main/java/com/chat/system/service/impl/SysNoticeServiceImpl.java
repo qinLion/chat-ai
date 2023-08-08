@@ -42,6 +42,11 @@ public class SysNoticeServiceImpl implements ISysNoticeService
         return noticeMapper.selectNoticeList(notice);
     }
 
+    @Override
+    public List<SysNotice> selectNoticeList() {
+        return noticeMapper.selectList();
+    }
+
     /**
      * 新增公告
      * 

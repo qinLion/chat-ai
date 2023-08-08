@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chat.system.mapper.AppCommentLogMapper">
+
+    <select id="commentNotice" resultType="com.chat.system.domain.res.AppNoticeCommentRes">
+        SELECT au.nickname as name,au.photo,date_format(acl.create_time, '%Y-%m-%d %H:%i:%s') as createTime,
+        ac.content as commentContent,acl.comment_id as commentId,acl.comment_id_real as id,acl.type as type
+        FROM `app_comment_log` acl
+        left join app_user au on acl.from_user_id = au.id
+        left join app_comment ac on acl.comment_id = ac.id
+        where to_user_id = #{userId}
+        ORDER BY acl.create_time desc
+    </select>
+</mapper>

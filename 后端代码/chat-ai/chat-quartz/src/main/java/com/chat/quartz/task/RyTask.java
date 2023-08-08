@@ -5,6 +5,7 @@ import com.chat.common.enums.MessageSendType;
 import com.chat.common.enums.PermanentUser;
 import com.chat.system.domain.AppMessage;
 import com.chat.system.domain.AppUser;
+import com.chat.system.service.IAppKeyService;
 import com.chat.system.service.IAppMessageService;
 import com.chat.system.service.IAppUserService;
 import org.springframework.stereotype.Component;
@@ -26,6 +27,9 @@ public class RyTask {
 
     @Resource
     private IAppMessageService appMessageService;
+
+    @Resource
+    private IAppKeyService appKeyService;
 
     public void everydat() {
         // 每天加免费的聊天次数
@@ -53,5 +57,12 @@ public class RyTask {
             }
         }
         appUserService.updateBatchById(list);
+    }
+
+    /**
+     * 判断key是否有效
+     */
+    public void keyTest(){
+        appKeyService.test();
     }
 }
